@@ -1,3 +1,9 @@
 2025/06/12-15:55:54.789 8a4 Reusing MANIFEST D:\Github\whatsapp-filament - Copy\whatsapp-connector\.wwebjs_auth\session-admin_1\Default\Local Storage\leveldb/MANIFEST-000001
 2025/06/12-15:55:54.789 8a4 Recovering log #8
 2025/06/12-15:55:54.789 8a4 Reusing old log D:\Github\whatsapp-filament - Copy\whatsapp-connector\.wwebjs_auth\session-admin_1\Default\Local Storage\leveldb/000008.log 
+2025/06/12-17:17:04.672 1cdc Level-0 table #12: started
+2025/06/12-17:17:04.683 1cdc Level-0 table #12: 16003 bytes OK
+2025/06/12-17:17:04.685 1cdc Delete type=0 #8
+2025/06/12-19:56:21.686 169c Level-0 table #14: started
+2025/06/12-19:56:21.698 169c Level-0 table #14: 16067 bytes OK
+2025/06/12-19:56:21.699 169c Delete type=0 #11
