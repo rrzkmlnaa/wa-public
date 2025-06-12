@@ -1,0 +1,24 @@
+2025/06/12-16:01:37.457 1338 Reusing MANIFEST D:\Github\whatsapp-filament - Copy\whatsapp-connector\.wwebjs_auth\session-admin_2\Default\Local Storage\leveldb/MANIFEST-000001
+2025/06/12-16:01:37.457 1338 Recovering log #43
+2025/06/12-16:01:37.457 1338 Reusing old log D:\Github\whatsapp-filament - Copy\whatsapp-connector\.wwebjs_auth\session-admin_2\Default\Local Storage\leveldb/000043.log 
+2025/06/12-16:05:39.552 2198 Level-0 table #47: started
+2025/06/12-16:05:39.562 2198 Level-0 table #47: 49039 bytes OK
+2025/06/12-16:05:39.565 2198 Delete type=0 #43
+2025/06/12-16:05:39.565 2198 Compacting 4@0 + 1@1 files
+2025/06/12-16:05:39.568 2198 Generated table #48@0: 62 keys, 18701 bytes
+2025/06/12-16:05:39.568 2198 Compacted 4@0 + 1@1 files => 18701 bytes
+2025/06/12-16:05:39.571 2198 compacted to: files[ 0 1 1 0 0 0 0 ]
+2025/06/12-16:05:39.571 2198 Delete type=2 #38
+2025/06/12-16:05:39.571 2198 Delete type=2 #40
+2025/06/12-16:05:39.571 2198 Delete type=2 #42
+2025/06/12-16:05:39.571 2198 Delete type=2 #44
+2025/06/12-16:05:39.571 2198 Delete type=2 #47
+2025/06/12-16:09:39.561 3bd4 Level-0 table #50: started
+2025/06/12-16:09:39.565 3bd4 Level-0 table #50: 55479 bytes OK
+2025/06/12-16:09:39.570 3bd4 Delete type=0 #46
+2025/06/12-16:21:14.776 708 Level-0 table #52: started
+2025/06/12-16:21:14.787 708 Level-0 table #52: 58066 bytes OK
+2025/06/12-16:21:14.789 708 Delete type=0 #49
+2025/06/12-16:22:38.649 3e3c Level-0 table #54: started
+2025/06/12-16:22:38.659 3e3c Level-0 table #54: 57157 bytes OK
+2025/06/12-16:22:38.662 3e3c Delete type=0 #51

@@ -1,0 +1,66 @@
+2025/06/11-20:22:22.652 3bf8 Reusing MANIFEST D:\Github\whatsapp-filament\whatsapp-connector\.wwebjs_auth\session-admin_2\Default\Local Storage\leveldb/MANIFEST-000001
+2025/06/11-20:22:22.653 3bf8 Recovering log #15
+2025/06/11-20:22:22.654 3bf8 Reusing old log D:\Github\whatsapp-filament\whatsapp-connector\.wwebjs_auth\session-admin_2\Default\Local Storage\leveldb/000015.log 
+2025/06/11-20:47:19.120 3e30 Level-0 table #19: started
+2025/06/11-20:47:19.129 3e30 Level-0 table #19: 27541 bytes OK
+2025/06/11-20:47:19.130 3e30 Delete type=0 #15
+2025/06/11-20:47:19.131 3e30 Compacting 4@0 + 1@1 files
+2025/06/11-20:47:19.133 3e30 Generated table #20@0: 53 keys, 11500 bytes
+2025/06/11-20:47:19.133 3e30 Compacted 4@0 + 1@1 files => 11500 bytes
+2025/06/11-20:47:19.134 3e30 compacted to: files[ 0 1 1 0 0 0 0 ]
+2025/06/11-20:47:19.134 3e30 Delete type=2 #8
+2025/06/11-20:47:19.134 3e30 Delete type=2 #11
+2025/06/11-20:47:19.134 3e30 Delete type=2 #14
+2025/06/11-20:47:19.134 3e30 Delete type=2 #16
+2025/06/11-20:47:19.134 3e30 Delete type=2 #19
+2025/06/11-22:02:35.432 3ca8 Level-0 table #22: started
+2025/06/11-22:02:35.444 3ca8 Level-0 table #22: 34628 bytes OK
+2025/06/11-22:02:35.446 3ca8 Delete type=0 #18
+2025/06/11-22:21:21.121 23dc Level-0 table #24: started
+2025/06/11-22:21:21.130 23dc Level-0 table #24: 60737 bytes OK
+2025/06/11-22:21:21.131 23dc Delete type=0 #21
+2025/06/11-22:40:47.361 32b8 Level-0 table #26: started
+2025/06/11-22:40:47.373 32b8 Level-0 table #26: 54187 bytes OK
+2025/06/11-22:40:47.374 32b8 Delete type=0 #23
+2025/06/11-22:43:11.662 28e8 Level-0 table #28: started
+2025/06/11-22:43:11.665 28e8 Level-0 table #28: 68769 bytes OK
+2025/06/11-22:43:11.667 28e8 Delete type=0 #25
+2025/06/11-22:43:11.667 28e8 Compacting 4@0 + 1@1 files
+2025/06/11-22:43:11.671 28e8 Generated table #29@0: 53 keys, 13490 bytes
+2025/06/11-22:43:11.671 28e8 Compacted 4@0 + 1@1 files => 13490 bytes
+2025/06/11-22:43:11.672 28e8 compacted to: files[ 0 1 1 0 0 0 0 ]
+2025/06/11-22:43:11.672 28e8 Delete type=2 #20
+2025/06/11-22:43:11.672 28e8 Delete type=2 #22
+2025/06/11-22:43:11.672 28e8 Delete type=2 #24
+2025/06/11-22:43:11.672 28e8 Delete type=2 #26
+2025/06/11-22:43:11.673 28e8 Delete type=2 #28
+2025/06/11-22:49:02.309 28e8 Level-0 table #31: started
+2025/06/11-22:49:02.318 28e8 Level-0 table #31: 59158 bytes OK
+2025/06/11-22:49:02.319 28e8 Delete type=0 #27
+2025/06/11-22:54:56.716 357c Level-0 table #33: started
+2025/06/11-22:54:56.717 357c Level-0 table #33: 48279 bytes OK
+2025/06/11-22:54:56.718 357c Delete type=0 #30
+2025/06/12-04:22:57.346 1fd8 Level-0 table #35: started
+2025/06/12-04:22:57.358 1fd8 Level-0 table #35: 31189 bytes OK
+2025/06/12-04:22:57.359 1fd8 Delete type=0 #32
+2025/06/12-06:08:45.346 7f4 Level-0 table #37: started
+2025/06/12-06:08:45.357 7f4 Level-0 table #37: 33367 bytes OK
+2025/06/12-06:08:45.358 7f4 Delete type=0 #34
+2025/06/12-06:08:45.358 7f4 Compacting 4@0 + 1@1 files
+2025/06/12-06:08:45.360 7f4 Generated table #38@0: 53 keys, 15865 bytes
+2025/06/12-06:08:45.360 7f4 Compacted 4@0 + 1@1 files => 15865 bytes
+2025/06/12-06:08:45.360 7f4 compacted to: files[ 0 1 1 0 0 0 0 ]
+2025/06/12-06:08:45.361 7f4 Delete type=2 #29
+2025/06/12-06:08:45.361 7f4 Delete type=2 #31
+2025/06/12-06:08:45.361 7f4 Delete type=2 #33
+2025/06/12-06:08:45.361 7f4 Delete type=2 #35
+2025/06/12-06:08:45.361 7f4 Delete type=2 #37
+2025/06/12-08:26:51.680 20f4 Level-0 table #40: started
+2025/06/12-08:26:51.682 20f4 Level-0 table #40: 23972 bytes OK
+2025/06/12-08:26:51.683 20f4 Delete type=0 #36
+2025/06/12-08:35:57.046 29f0 Level-0 table #42: started
+2025/06/12-08:35:57.053 29f0 Level-0 table #42: 55674 bytes OK
+2025/06/12-08:35:57.056 29f0 Delete type=0 #39
+2025/06/12-10:01:11.940 2bb4 Level-0 table #44: started
+2025/06/12-10:01:11.942 2bb4 Level-0 table #44: 34680 bytes OK
+2025/06/12-10:01:11.943 2bb4 Delete type=0 #41
