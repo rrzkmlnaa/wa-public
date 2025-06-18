@@ -9,6 +9,8 @@ use App\Filament\Resources\ContactWithDelayResource\RelationManagers;
 use App\Models\Contact;
 use App\Models\ContactWithDelay;
 use App\Models\MessageLog;
+use App\Models\Program;
+use App\Models\Stage;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -28,7 +30,26 @@ class ContactWithDelayResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('name')
+                    ->label('Nama Pelanggan')
+                    ->required()
+                    ->maxLength(255),
+
+                Forms\Components\Select::make('program_id')
+                    ->label('Nama Program')
+                    ->options(Program::all()->pluck('name', 'id'))
+                    ->required()
+                    ->searchable(),
+
+                Forms\Components\Select::make('stage_id')
+                    ->label('Pilih Progress')
+                    ->options(
+                        Stage::all()->pluck('name', 'id')->mapWithKeys(function ($name, $id) {
+                            return [$id => strtoupper($name)];
+                        })
+                    )
+                    ->required()
+                    ->searchable(),
             ]);
     }
 
@@ -43,19 +64,12 @@ class ContactWithDelayResource extends Resource
                     ->searchable(),
 
                 Tables\Columns\TextColumn::make('name')
-                    ->label('Nama')
+                    ->label('Nama Pelanggan')
                     ->searchable(),
 
                 Tables\Columns\TextColumn::make('number')
-                    ->label('Nomor')
+                    ->label('Nomor Pelanggan')
                     ->searchable(),
-
-                Tables\Columns\TextColumn::make('latest_message_timestamp')
-                    ->label('Hari, Tanggal & Waktu')
-                    ->formatStateUsing(function ($state) {
-                        return $state ? \Carbon\Carbon::parse($state)->translatedFormat('l, d F Y H:i') : '-';
-                    }),
-
 
                 Tables\Columns\TextColumn::make('messageLogs.replied')
                     ->label('Sudah di balas?')
@@ -65,31 +79,46 @@ class ContactWithDelayResource extends Resource
                         return $state == '1' ? 'Ya' : 'Belum';
                     }),
 
-
                 Tables\Columns\TextColumn::make('average_delay')
-                    ->label('Rata-Rata Waktu Interaksi')
+                    ->label('Kec. Menjawab')
                     ->getStateUsing(function (Contact $record) {
                         $messageLogs = $record->messageLogs;
 
-                        $totalDelay = 0;
-                        $count = 0;
+                        $delays = [];
 
                         foreach ($messageLogs as $messageLog) {
+                            // Abaikan kalau belum dibalas
+                            if (!$messageLog->replied) {
+                                continue;
+                            }
+
                             $chats = json_decode($messageLog->chats, true);
                             if (is_array($chats) && count($chats) > 1) {
-                                $chats = array_slice($chats, -10);
-                                for ($i = 1; $i < count($chats); $i++) {
-                                    if ($chats[$i]['fromMe'] !== $chats[$i - 1]['fromMe']) {
-                                        $delay = $chats[$i]['timestamp'] - $chats[$i - 1]['timestamp'];
-                                        $totalDelay += $delay;
-                                        $count++;
+                                $chats = array_reverse($chats); // Biar kita cek dari akhir
+
+                                $lastFromMe = null;
+                                $lastNotFromMe = null;
+
+                                foreach ($chats as $chat) {
+                                    if ($chat['fromMe'] === true && !$lastFromMe) {
+                                        $lastFromMe = $chat;
+                                    }
+                                    if ($chat['fromMe'] === false && !$lastNotFromMe) {
+                                        $lastNotFromMe = $chat;
+                                    }
+
+                                    if ($lastFromMe && $lastNotFromMe) {
+                                        // Hitung delay
+                                        $delay = abs($lastFromMe['timestamp'] - $lastNotFromMe['timestamp']);
+                                        $delays[] = $delay;
+                                        break; // Hanya ambil pasangan terakhir
                                     }
                                 }
                             }
                         }
 
-                        if ($count > 0) {
-                            $avg = round($totalDelay / $count);
+                        if (count($delays) > 0) {
+                            $avg = round(array_sum($delays) / count($delays));
 
                             $hours = floor($avg / 3600);
                             $minutes = floor(($avg % 3600) / 60);
@@ -105,15 +134,14 @@ class ContactWithDelayResource extends Resource
                                 $formatted .= $minutes . 'm';
                             }
 
-                            // Simpan avg ke dalam $record agar bisa dipakai di color()
                             $record->avgDelay = $avg;
-
                             return $formatted;
                         }
 
                         $record->avgDelay = 0;
                         return '-';
                     })
+
                     ->color(function ($record) {
                         if (!isset($record->avgDelay)) {
                             return 'gray';
@@ -126,7 +154,34 @@ class ContactWithDelayResource extends Resource
                         } else {
                             return 'success'; // hijau
                         }
-                    })
+                    }),
+
+                Tables\Columns\TextColumn::make('program.name')
+                    ->label('Nama Program')
+                    ->searchable(),
+
+                Tables\Columns\TextColumn::make('stage.name')
+                    ->label('Staging')
+                    ->alignCenter()
+                    ->badge() // tampilkan sebagai badge
+                    ->searchable()
+                    ->formatStateUsing(fn($state) => strtoupper($state)) // huruf besar semua
+                    ->color(function ($state) {
+                        return match (strtolower($state)) {
+                            'forecast' => 'gray',
+                            'foreseen' => 'warning',
+                            'firm' => 'info',
+                            'backlog' => 'success',
+                            default => 'secondary',
+                        };
+                    }),
+
+                Tables\Columns\TextColumn::make('latest_message_timestamp')
+                    ->label('Terakhir Komunikasi')
+                    ->formatStateUsing(function ($state) {
+                        return $state ? \Carbon\Carbon::parse($state)->translatedFormat('l, d F Y H:i') : '-';
+                    }),
+
             ])
             ->filters([
                 Tables\Filters\Filter::make('tanggal')
@@ -239,7 +294,7 @@ class ContactWithDelayResource extends Resource
 
             ])
             ->actions([
-                Tables\Actions\ViewAction::make()->label('Lihat Pesan'),
+                Tables\Actions\EditAction::make(),
             ])
             ->headerActions([
                 FilamentExportHeaderAction::make('export')
@@ -277,7 +332,7 @@ class ContactWithDelayResource extends Resource
         return [
             'index' => Pages\ListContactWithDelays::route('/'),
             'create' => Pages\CreateContactWithDelay::route('/create'),
-            'edit' => Pages\EditContactWithDelay::route('/{record}/edit'),
+            // 'edit' => Pages\EditContactWithDelay::route('/{record}/edit'),
             'view' => Pages\ViewContactChats::route('/{record}')
         ];
     }

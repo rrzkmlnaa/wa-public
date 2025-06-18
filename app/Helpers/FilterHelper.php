@@ -51,3 +51,12 @@ function match_time(\Carbon\Carbon $carbon, $value)
       return true;
   }
 }
+
+function getUniquePrograms(array $payloads): array
+{
+  $programs = array_filter(array_map(function ($payload) {
+    return strtoupper(trim($payload['program']));
+  }, $payloads));
+
+  return array_values(array_unique($programs));
+}

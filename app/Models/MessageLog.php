@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class MessageLog extends Model
 {
-    protected $fillable = ['contact_id', 'chats', 'timestamp', 'replied'];
+    protected $fillable = ['contact_id', 'chats', 'timestamp', 'replied', 'stage', 'program', 'city', 'information'];
 
     public function contact(): BelongsTo
     {

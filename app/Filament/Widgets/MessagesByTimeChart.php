@@ -106,15 +106,11 @@ class MessagesByTimeChart extends ChartWidget
 
     protected function countMessagesNight(string $date): int
     {
-        // Malam: 18:00 - 23:59 + 00:00 - 05:59 (gabungan 2 rentang waktu)
-        $count1 = MessageLog::whereDate('timestamp', $date)
-            ->whereTime('timestamp', '>=', '18:00:00')
+        return MessageLog::whereDate('timestamp', $date)
+            ->where(function ($query) {
+                $query->whereTime('timestamp', '>=', '18:00:00')
+                    ->orWhereTime('timestamp', '<', '06:00:00');
+            })
             ->count();
-
-        $count2 = MessageLog::whereDate('timestamp', Carbon::parse($date)->addDay()->toDateString())
-            ->whereTime('timestamp', '<', '06:00:00')
-            ->count();
-
-        return $count1 + $count2;
     }
 }
